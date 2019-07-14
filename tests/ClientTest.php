@@ -1,12 +1,12 @@
 <?php
 
-namespace Protean\DeVault\Tests;
+namespace Proteanx\DeVault\Tests;
 
-use Protean\DeVault\Client as DeVaultClient;
-use Protean\DeVault\Config;
-use Protean\DeVault\Exceptions;
-use Protean\DeVault\Responses\DeVaultdResponse;
-use Protean\DeVault\Responses\Response;
+use Proteanx\DeVault\Client as DeVaultClient;
+use Proteanx\DeVault\Config;
+use Proteanx\DeVault\Exceptions;
+use Proteanx\DeVault\Responses\DeVaultdResponse;
+use Proteanx\DeVault\Responses\Response;
 use GuzzleHttp\Client as GuzzleHttp;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
@@ -436,7 +436,7 @@ class FakeClient extends DeVaultClient
      */
     protected function getResponseHandler() : string
     {
-        return 'Protean\\DeVault\\Tests\\FakeResponse';
+        return 'Proteanx\\DeVault\\Tests\\FakeResponse';
     }
 }
 

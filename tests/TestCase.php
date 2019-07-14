@@ -1,8 +1,8 @@
 <?php
 
-namespace Protean\DeVault\Tests;
+namespace Proteanx\DeVault\Tests;
 
-use Protean\DeVault\Responses\DeVaultdResponse;
+use Proteanx\DeVault\Responses\DeVaultdResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;

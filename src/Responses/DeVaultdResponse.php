@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Responses;
+namespace Proteanx\DeVault\Responses;
 
-use Protean\DeVault\Traits\Collection;
-use Protean\DeVault\Traits\ImmutableArray;
-use Protean\DeVault\Traits\SerializableContainer;
+use Proteanx\DeVault\Traits\Collection;
+use Proteanx\DeVault\Traits\ImmutableArray;
+use Proteanx\DeVault\Traits\SerializableContainer;
 
 class DeVaultdResponse extends Response implements
     \ArrayAccess,

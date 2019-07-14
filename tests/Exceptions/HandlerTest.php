@@ -1,10 +1,10 @@
 <?php
 
-namespace Protean\DeVault\Tests\Exceptions;
+namespace Proteanx\DeVault\Tests\Exceptions;
 
-use Protean\DeVault\Exceptions;
-use Protean\DeVault\Exceptions\Handler as ExceptionHandler;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Exceptions;
+use Proteanx\DeVault\Exceptions\Handler as ExceptionHandler;
+use Proteanx\DeVault\Tests\TestCase;
 use Exception;
 
 class HandlerTest extends TestCase
@@ -61,7 +61,7 @@ class HandlerTest extends TestCase
         $this->expectException(BadConfigurationException::class);
         $this->expectExceptionMessage('Test message');
 
-        ExceptionHandler::getInstance()->setNamespace('Protean\\DeVault\\Tests\\Exceptions');
+        ExceptionHandler::getInstance()->setNamespace('Proteanx\\DeVault\\Tests\\Exceptions');
         ExceptionHandler::getInstance()->handle(
             new Exceptions\BadConfigurationException(['foo' => 'bar'], 'Test message')
         );

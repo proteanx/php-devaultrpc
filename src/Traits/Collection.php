@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Traits;
+namespace Proteanx\DeVault\Traits;
 
 use InvalidArgumentException;
 

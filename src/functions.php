@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault;
+namespace Proteanx\DeVault;
 
-use Protean\DeVault\Exceptions\BadConfigurationException;
-use Protean\DeVault\Exceptions\Handler as ExceptionHandler;
+use Proteanx\DeVault\Exceptions\BadConfigurationException;
+use Proteanx\DeVault\Exceptions\Handler as ExceptionHandler;
 
 if (!function_exists('to_devault')) {
     /**
@@ -35,29 +35,29 @@ if (!function_exists('to_satoshi')) {
     }
 }
 
-if (!function_exists('to_ubtc')) {
+if (!function_exists('to_udvt')) {
     /**
-     * Converts from devault to ubtc/bits.
+     * Converts from devault to udvt/bits.
      *
      * @param string|float $devault
      *
      * @return string
      */
-    function to_ubtc($devault) : string
+    function to_udvt($devault) : string
     {
         return bcmul(to_fixed((float) $devault, 8), (string) 1e6, 4);
     }
 }
 
-if (!function_exists('to_mbtc')) {
+if (!function_exists('to_mdvt')) {
     /**
-     * Converts from devault to mbtc.
+     * Converts from devault to mdvt.
      *
      * @param string|float $devault
      *
      * @return string
      */
-    function to_mbtc($devault) : string
+    function to_mdvt($devault) : string
     {
         return bcmul(to_fixed((float) $devault, 8), (string) 1e3, 4);
     }
@@ -110,7 +110,7 @@ if (!function_exists('exception')) {
     /**
      * Gets exception handler instance.
      *
-     * @return \Protean\DeVault\Exceptions\Handler
+     * @return \Proteanx\DeVault\Exceptions\Handler
      */
     function exception() : ExceptionHandler
     {

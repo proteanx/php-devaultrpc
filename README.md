@@ -1,17 +1,10 @@
 # Simple DeVault JSON-RPC client based on GuzzleHttp
 
-[![Latest Stable Version](https://poser.pugx.org/protean/php-devaultrpc/v/stable)](https://packagist.org/packages/protean/php-devaultrpc)
-[![License](https://poser.pugx.org/protean/php-devaultrpc/license)](https://packagist.org/packages/protean/php-devaultrpc)
-[![Build Status](https://travis-ci.org/proteanmusic/php-devaultrpc.svg)](https://travis-ci.org/proteanmusic/php-devaultrpc)
-[![Code Climate](https://codeclimate.com/github/proteanmusic/php-devaultrpc/badges/gpa.svg)](https://codeclimate.com/github/proteanmusic/php-devaultrpc)
-[![Code Coverage](https://codeclimate.com/github/proteanmusic/php-devaultrpc/badges/coverage.svg)](https://codeclimate.com/github/proteanmusic/php-devaultrpc/coverage)
-[![Join the chat at https://gitter.im/php-devaultrpc/Lobby](https://badges.gitter.im/php-devaultrpc/Lobby.svg)](https://gitter.im/php-devaultrpc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ## Installation
 Run ```php composer.phar require protean/php-devaultrpc``` in your project directory or add following lines to composer.json
 ```javascript
 "require": {
-    "protean/php-devaultrpc": "^2.1"
+    "proteanx/php-devaultrpc": "^2.1"
 }
 ```
 and run ```php composer.phar install```.
@@ -29,7 +22,7 @@ Create new object with url as parameter
  **/
 // require 'vendor/autoload.php';
 
-use Protean\DeVault\Client as DeVaultClient;
+use Proteanx\DeVault\Client as DeVaultClient;
 
 $devaultd = new DeVaultClient('http://rpcuser:rpcpassword@localhost:3339/');
 ```
@@ -41,7 +34,7 @@ or use array to define your devaultd settings
  **/
 // require 'vendor/autoload.php';
 
-use Protean\DeVault\Client as DeVaultClient;
+use Proteanx\DeVault\Client as DeVaultClient;
 
 $devaultd = new DeVaultClient([
     'scheme'        => 'http',                 // optional, default http
@@ -85,7 +78,7 @@ $txid = $result->get();
  */
 $result = $devaultd->listSinceBlock();
 $devault = $result->sum('transactions.*.amount');
-$satoshi = \Protean\DeVault\to_satoshi($devault);
+$satoshi = \Proteanx\DeVault\to_satoshi($devault);
 ```
 To send asynchronous request, add Async to method name:
 ```php
@@ -153,9 +146,9 @@ echo $balance->get(); // 0.10000000
 ```
 
 ## Exceptions
-* `Protean\DeVault\Exceptions\BadConfigurationException` - thrown on bad client configuration.
-* `Protean\DeVault\Exceptions\BadRemoteCallException` - thrown on getting error message from daemon.
-* `Protean\DeVault\Exceptions\ConnectionException` - thrown on daemon connection errors (e. g. timeouts)
+* `Proteanx\DeVault\Exceptions\BadConfigurationException` - thrown on bad client configuration.
+* `Proteanx\DeVault\Exceptions\BadRemoteCallException` - thrown on getting error message from daemon.
+* `Proteanx\DeVault\Exceptions\ConnectionException` - thrown on daemon connection errors (e. g. timeouts)
 
 
 ## Helpers
@@ -163,27 +156,17 @@ Package provides following helpers to assist with value handling.
 #### `to_devault()`
 Converts value in satoshi to devault.
 ```php
-echo Protean\DeVault\to_devault(100000); // 0.00100000
+echo Proteanx\DeVault\to_devault(100000); // 0.00100000
 ```
-#### `to_satoshi()`
-Converts value in devault to satoshi.
+#### `to_mdvt()`
+Converts value in devault to mdvt.
 ```php
-echo Protean\DeVault\to_satoshi(0.001); // 100000
-```
-#### `to_ubtc()`
-Converts value in devault to ubtc/bits.
-```php
-echo Protean\DeVault\to_ubtc(0.001); // 1000.0000
-```
-#### `to_mbtc()`
-Converts value in devault to mbtc.
-```php
-echo Protean\DeVault\to_mbtc(0.001); // 1.0000
+echo Proteanx\DeVault\to_mdvt(0.001); // 1.0000
 ```
 #### `to_fixed()`
 Trims float value to precision without rounding.
 ```php
-echo Protean\DeVault\to_fixed(0.1236, 3); // 0.123
+echo Proteanx\DeVault\to_fixed(0.1236, 3); // 0.123
 ```
 
 ## License

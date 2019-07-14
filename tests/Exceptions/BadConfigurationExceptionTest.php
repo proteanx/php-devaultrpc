@@ -1,9 +1,9 @@
 <?php
 
-namespace Protean\DeVault\Tests\Exceptions;
+namespace Proteanx\DeVault\Tests\Exceptions;
 
-use Protean\DeVault\Exceptions\BadConfigurationException;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Exceptions\BadConfigurationException;
+use Proteanx\DeVault\Tests\TestCase;
 
 class BadConfigurationExceptionTest extends TestCase
 {

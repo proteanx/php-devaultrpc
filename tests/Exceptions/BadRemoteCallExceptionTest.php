@@ -1,10 +1,10 @@
 <?php
 
-namespace Protean\DeVault\Tests\Exceptions;
+namespace Proteanx\DeVault\Tests\Exceptions;
 
-use Protean\DeVault\Exceptions\BadRemoteCallException;
-use Protean\DeVault\Responses\Response;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Exceptions\BadRemoteCallException;
+use Proteanx\DeVault\Responses\Response;
+use Proteanx\DeVault\Tests\TestCase;
 
 class BadRemoteCallExceptionTest extends TestCase
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault;
+namespace Proteanx\DeVault;
 
-use Protean\DeVault\Exceptions\BadRemoteCallException;
-use Protean\DeVault\Traits\HandlesAsync;
+use Proteanx\DeVault\Exceptions\BadRemoteCallException;
+use Proteanx\DeVault\Traits\HandlesAsync;
 use GuzzleHttp\Client as GuzzleHttp;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
@@ -28,7 +28,7 @@ class Client
     /**
      * Client configuration.
      *
-     * @var \Protean\DeVault\Config
+     * @var \Proteanx\DeVault\Config
      */
     protected $config;
 
@@ -92,7 +92,7 @@ class Client
     /**
      * Gets client config.
      *
-     * @return \Protean\DeVault\Config
+     * @return \Proteanx\DeVault\Config
      */
     public function getConfig() : Config
     {
@@ -234,7 +234,7 @@ class Client
      */
     protected function getConfigProvider() : string
     {
-        return 'Protean\\DeVault\\Config';
+        return 'Proteanx\\DeVault\\Config';
     }
 
     /**
@@ -244,7 +244,7 @@ class Client
      */
     protected function getResponseHandler() : string
     {
-        return 'Protean\\DeVault\\Responses\\DeVaultdResponse';
+        return 'Proteanx\\DeVault\\Responses\\DeVaultdResponse';
     }
 
     /**

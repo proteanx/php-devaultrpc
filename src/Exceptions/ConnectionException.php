@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Exceptions;
+namespace Proteanx\DeVault\Exceptions;
 
 use GuzzleHttp\Psr7\Request;
 

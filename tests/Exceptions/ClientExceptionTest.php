@@ -1,9 +1,9 @@
 <?php
 
-namespace Protean\DeVault\Tests\Exceptions;
+namespace Proteanx\DeVault\Tests\Exceptions;
 
-use Protean\DeVault\Exceptions\ClientException;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Exceptions\ClientException;
+use Proteanx\DeVault\Tests\TestCase;
 
 class ClientExceptionTest extends TestCase
 {
@@ -66,7 +66,7 @@ class FakeClientException extends ClientException
 
 namespace Test\Exceptions;
 
-class FakeClientException extends \Protean\DeVault\Tests\Exceptions\FakeClientException
+class FakeClientException extends \Proteanx\DeVault\Tests\Exceptions\FakeClientException
 {
     // same as above in different namespace
 }

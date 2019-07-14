@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Exceptions;
+namespace Proteanx\DeVault\Exceptions;
 
-use Protean\DeVault\Responses\Response;
+use Proteanx\DeVault\Responses\Response;
 
 class BadRemoteCallException extends ClientException
 {
     /**
      * Response object.
      *
-     * @var \Protean\DeVault\Responses\Response
+     * @var \Proteanx\DeVault\Responses\Response
      */
     protected $response;
 
     /**
      * Constructs new bad remote call exception.
      *
-     * @param \Protean\DeVault\Responses\Response $response
+     * @param \Proteanx\DeVault\Responses\Response $response
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class BadRemoteCallException extends ClientException
     /**
      * Gets response object.
      *
-     * @return \Protean\DeVault\Responses\Response
+     * @return \Proteanx\DeVault\Responses\Response
      */
     public function getResponse() : Response
     {

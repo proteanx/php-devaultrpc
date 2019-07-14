@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Responses;
+namespace Proteanx\DeVault\Responses;
 
-use Protean\DeVault\Traits\Message;
+use Proteanx\DeVault\Traits\Message;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class Response implements ResponseInterface

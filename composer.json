@@ -1,5 +1,5 @@
 {
-    "name": "protean/php-devaultrpc",
+    "name": "proteanx/php-devaultrpc",
     "type": "library",
     "description": "DeVault JSON-RPC client based on GuzzleHttp",
     "keywords": ["devault","api","jsonrpc","guzzle"],
@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Proteus Xists",
-            "email": "proteus@devault.cc",
+            "email": "pro@proteanx.com",
             "role": "Developer"
         }
     ],
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Protean\\DeVault\\": "src"
+            "Proteanx\\DeVault\\": "src"
         },
         "files" : [
             "src/functions.php"
@@ -29,7 +29,7 @@
     },
     "autoload-dev": {
         "psr-4" : {
-            "Protean\\DeVault\\Tests\\": "tests"
+            "Proteanx\\DeVault\\Tests\\": "tests"
         }
     }
 }

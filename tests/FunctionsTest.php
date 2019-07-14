@@ -1,15 +1,15 @@
 <?php
 
-namespace Protean\DeVault\Tests;
+namespace Proteanx\DeVault\Tests;
 
-use Protean\DeVault;
-use Protean\DeVault\Exceptions\BadConfigurationException;
-use Protean\DeVault\Exceptions\Handler as ExceptionHandler;
+use Proteanx\DeVault;
+use Proteanx\DeVault\Exceptions\BadConfigurationException;
+use Proteanx\DeVault\Exceptions\Handler as ExceptionHandler;
 
 class FunctionsTest extends TestCase
 {
     /**
-     * Test satoshi to btc converter.
+     * Test satoshi to dvt converter.
      *
      * @param int    $satoshi
      * @param string $devault
@@ -39,33 +39,33 @@ class FunctionsTest extends TestCase
     }
 
     /**
-     * Test devault to ubtc/bits converter.
+     * Test devault to udvt/bits converter.
      *
-     * @param int    $ubtc
+     * @param int    $udvt
      * @param string $devault
      *
      * @return void
      *
      * @dataProvider bitsBtcProvider
      */
-    public function testToBits(int $ubtc, string $devault) : void
+    public function testToBits(int $udvt, string $devault) : void
     {
-        $this->assertEquals($ubtc, DeVault\to_ubtc($devault));
+        $this->assertEquals($udvt, DeVault\to_udvt($devault));
     }
 
     /**
-     * Test devault to mbtc converter.
+     * Test devault to mdvt converter.
      *
-     * @param float  $mbtc
+     * @param float  $mdvt
      * @param string $devault
      *
      * @return void
      *
-     * @dataProvider mbtcBtcProvider
+     * @dataProvider mdvtBtcProvider
      */
-    public function testToMbtc(float $mbtc, string $devault) : void
+    public function testToMdvt(float $mdvt, string $devault) : void
     {
-        $this->assertEquals($mbtc, DeVault\to_mbtc($devault));
+        $this->assertEquals($mdvt, DeVault\to_mdvt($devault));
     }
 
     /**
@@ -177,7 +177,7 @@ class FunctionsTest extends TestCase
     }
 
     /**
-     * Provides satoshi and ubtc/bits values.
+     * Provides satoshi and udvt/bits values.
      *
      * @return array
      */
@@ -193,11 +193,11 @@ class FunctionsTest extends TestCase
     }
 
     /**
-     * Provides satoshi and mbtc values.
+     * Provides satoshi and mdvt values.
      *
      * @return array
      */
-    public function mbtcBtcProvider() : array
+    public function mdvtBtcProvider() : array
     {
         return [
             [0.01, '0.00001000'],

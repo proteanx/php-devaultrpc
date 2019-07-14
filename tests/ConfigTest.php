@@ -1,8 +1,8 @@
 <?php
 
-namespace Protean\DeVault\Tests;
+namespace Proteanx\DeVault\Tests;
 
-use Protean\DeVault\Config;
+use Proteanx\DeVault\Config;
 
 class ConfigTest extends TestCase
 {

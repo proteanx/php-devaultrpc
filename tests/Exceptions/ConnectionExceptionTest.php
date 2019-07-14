@@ -1,9 +1,9 @@
 <?php
 
-namespace Protean\DeVault\Tests\Exceptions;
+namespace Proteanx\DeVault\Tests\Exceptions;
 
-use Protean\DeVault\Exceptions\ConnectionException;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Exceptions\ConnectionException;
+use Proteanx\DeVault\Tests\TestCase;
 use GuzzleHttp\Psr7\Request;
 
 class ConnectionExceptionTest extends TestCase

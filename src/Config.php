@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault;
+namespace Proteanx\DeVault;
 
-use Protean\DeVault\Traits\Collection;
-use Protean\DeVault\Traits\ImmutableArray;
+use Proteanx\DeVault\Traits\Collection;
+use Proteanx\DeVault\Traits\ImmutableArray;
 
 class Config implements \ArrayAccess, \Countable
 {

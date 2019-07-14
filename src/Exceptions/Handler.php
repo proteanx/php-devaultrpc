@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Protean\DeVault\Exceptions;
+namespace Proteanx\DeVault\Exceptions;
 
-use Protean\DeVault\Traits\Singleton;
+use Proteanx\DeVault\Traits\Singleton;
 use GuzzleHttp\Exception\RequestException;
 use Throwable;
 

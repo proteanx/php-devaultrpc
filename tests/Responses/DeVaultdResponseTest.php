@@ -1,9 +1,9 @@
 <?php
 
-namespace Protean\DeVault\Tests\Responses;
+namespace Proteanx\DeVault\Tests\Responses;
 
-use Protean\DeVault\Responses\DeVaultdResponse;
-use Protean\DeVault\Tests\TestCase;
+use Proteanx\DeVault\Responses\DeVaultdResponse;
+use Proteanx\DeVault\Tests\TestCase;
 use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
