@@ -1,14 +1,14 @@
 {
-    "name": "denpa/php-bitcoinrpc",
+    "name": "protean/php-devaultrpc",
     "type": "library",
-    "description": "Bitcoin JSON-RPC client based on GuzzleHttp",
-    "keywords": ["bitcoin","api","jsonrpc","guzzle"],
-    "homepage": "https://github.com/denpamusic/php-bitcoinrpc",
+    "description": "DeVault JSON-RPC client based on GuzzleHttp",
+    "keywords": ["devault","api","jsonrpc","guzzle"],
+    "homepage": "https://github.com/proteanx/php-devaultrpc",
     "license": "MIT",
     "authors": [
         {
-            "name": "Denis Paavilainen",
-            "email": "denpa@netfleet.space",
+            "name": "Proteus Xists",
+            "email": "proteus@devault.cc",
             "role": "Developer"
         }
     ],
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Denpa\\Bitcoin\\": "src"
+            "Protean\\DeVault\\": "src"
         },
         "files" : [
             "src/functions.php"
@@ -29,7 +29,7 @@
     },
     "autoload-dev": {
         "psr-4" : {
-            "Denpa\\Bitcoin\\Tests\\": "tests"
+            "Protean\\DeVault\\Tests\\": "tests"
         }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests\Exceptions;
+namespace Protean\DeVault\Tests\Exceptions;
 
-use Denpa\Bitcoin\Exceptions\ConnectionException;
-use Denpa\Bitcoin\Tests\TestCase;
+use Protean\DeVault\Exceptions\ConnectionException;
+use Protean\DeVault\Tests\TestCase;
 use GuzzleHttp\Psr7\Request;
 
 class ConnectionExceptionTest extends TestCase

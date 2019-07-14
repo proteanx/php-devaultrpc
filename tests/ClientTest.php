@@ -1,12 +1,12 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests;
+namespace Protean\DeVault\Tests;
 
-use Denpa\Bitcoin\Client as BitcoinClient;
-use Denpa\Bitcoin\Config;
-use Denpa\Bitcoin\Exceptions;
-use Denpa\Bitcoin\Responses\BitcoindResponse;
-use Denpa\Bitcoin\Responses\Response;
+use Protean\DeVault\Client as DeVaultClient;
+use Protean\DeVault\Config;
+use Protean\DeVault\Exceptions;
+use Protean\DeVault\Responses\DeVaultdResponse;
+use Protean\DeVault\Responses\Response;
 use GuzzleHttp\Client as GuzzleHttp;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
@@ -21,7 +21,7 @@ class ClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->bitcoind = new BitcoinClient();
+        $this->devaultd = new DeVaultClient();
     }
 
     /**
@@ -31,19 +31,19 @@ class ClientTest extends TestCase
      */
     public function testClientSetterGetter() : void
     {
-        $bitcoind = new BitcoinClient('http://old_client.org');
-        $this->assertInstanceOf(BitcoinClient::class, $bitcoind);
+        $devaultd = new DeVaultClient('http://old_client.org');
+        $this->assertInstanceOf(DeVaultClient::class, $devaultd);
 
-        $base_uri = $bitcoind->getClient()->getConfig('base_uri');
+        $base_uri = $devaultd->getClient()->getConfig('base_uri');
         $this->assertEquals($base_uri->getHost(), 'old_client.org');
 
-        $oldClient = $bitcoind->getClient();
+        $oldClient = $devaultd->getClient();
         $this->assertInstanceOf(GuzzleHttp::class, $oldClient);
 
         $newClient = new GuzzleHttp(['base_uri' => 'http://new_client.org']);
-        $bitcoind->setClient($newClient);
+        $devaultd->setClient($newClient);
 
-        $base_uri = $bitcoind->getClient()->getConfig('base_uri');
+        $base_uri = $devaultd->getClient()->getConfig('base_uri');
         $this->assertEquals($base_uri->getHost(), 'new_client.org');
     }
 
@@ -54,9 +54,9 @@ class ClientTest extends TestCase
      */
     public function testPreserveCaseOption() : void
     {
-        $bitcoind = new BitcoinClient(['preserve_case' => true]);
-        $bitcoind->setClient($this->mockGuzzle([$this->getBlockResponse()]));
-        $bitcoind->getBlockHeader();
+        $devaultd = new DeVaultClient(['preserve_case' => true]);
+        $devaultd->setClient($this->mockGuzzle([$this->getBlockResponse()]));
+        $devaultd->getBlockHeader();
 
         $request = $this->getHistoryRequestBody();
 
@@ -73,7 +73,7 @@ class ClientTest extends TestCase
      */
     public function testGetConfig() : void
     {
-        $this->assertInstanceOf(Config::class, $this->bitcoind->getConfig());
+        $this->assertInstanceOf(Config::class, $this->devaultd->getConfig());
     }
 
     /**
@@ -83,7 +83,7 @@ class ClientTest extends TestCase
      */
     public function testRequest() : void
     {
-        $response = $this->bitcoind
+        $response = $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBlockResponse()]))
             ->request(
                 'getblockheader',
@@ -109,7 +109,7 @@ class ClientTest extends TestCase
     {
         $wallet = 'testwallet.dat';
 
-        $response = $this->bitcoind
+        $response = $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBalanceResponse()]))
             ->wallet($wallet)
             ->request('getbalance');
@@ -130,12 +130,12 @@ class ClientTest extends TestCase
     {
         $wallet = 'testwallet2.dat';
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBalanceResponse()]))
             ->wallet($wallet)
             ->requestAsync('getbalance', []);
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
 
         $this->assertEquals(
             $this->getHistoryRequestUri()->getPath(),
@@ -151,12 +151,12 @@ class ClientTest extends TestCase
     public function testAsyncRequest() : void
     {
         $onFulfilled = $this->mockCallable([
-            $this->callback(function (BitcoindResponse $response) {
+            $this->callback(function (DeVaultdResponse $response) {
                 return $response->get() == self::$getBlockResponse;
             }),
         ]);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBlockResponse()]))
             ->requestAsync(
                 'getblockheader',
@@ -166,7 +166,7 @@ class ClientTest extends TestCase
                 }
             );
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
 
         $request = $this->getHistoryRequestBody();
         $this->assertEquals($this->makeRequestBody(
@@ -183,7 +183,7 @@ class ClientTest extends TestCase
      */
     public function testMagic() : void
     {
-        $response = $this->bitcoind
+        $response = $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBlockResponse()]))
             ->getBlockHeader(
                 '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'
@@ -205,12 +205,12 @@ class ClientTest extends TestCase
     public function testAsyncMagic() : void
     {
         $onFulfilled = $this->mockCallable([
-            $this->callback(function (BitcoindResponse $response) {
+            $this->callback(function (DeVaultdResponse $response) {
                 return $response->get() == self::$getBlockResponse;
             }),
         ]);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->getBlockResponse()]))
             ->getBlockHeaderAsync(
                 '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f',
@@ -219,7 +219,7 @@ class ClientTest extends TestCase
                 }
             );
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
 
         $request = $this->getHistoryRequestBody();
         $this->assertEquals($this->makeRequestBody(
@@ -230,17 +230,17 @@ class ClientTest extends TestCase
     }
 
     /**
-     * Test bitcoind exception.
+     * Test devaultd exception.
      *
      * @return void
      */
-    public function testBitcoindException() : void
+    public function testDeVaultdException() : void
     {
         $this->expectException(Exceptions\BadRemoteCallException::class);
         $this->expectExceptionMessage(self::$rawTransactionError['message']);
         $this->expectExceptionCode(self::$rawTransactionError['code']);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->rawTransactionError(200)]))
             ->getRawTransaction(
                 '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b'
@@ -258,7 +258,7 @@ class ClientTest extends TestCase
         $this->expectExceptionMessage(self::$rawTransactionError['message']);
         $this->expectExceptionCode(self::$rawTransactionError['code']);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->rawTransactionError(200)]))
             ->getRawTransaction(
                 '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b'
@@ -276,7 +276,7 @@ class ClientTest extends TestCase
         $this->expectExceptionMessage($this->error500());
         $this->expectExceptionCode(500);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([new GuzzleResponse(500)]))
             ->getRawTransaction(
                 '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b'
@@ -297,7 +297,7 @@ class ClientTest extends TestCase
             }),
         ]);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([new GuzzleResponse(500)]))
             ->requestAsync(
                 'getrawtransaction',
@@ -308,7 +308,7 @@ class ClientTest extends TestCase
                 }
             );
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
     }
 
     /**
@@ -322,7 +322,7 @@ class ClientTest extends TestCase
         $this->expectExceptionMessage(self::$rawTransactionError['message']);
         $this->expectExceptionCode(self::$rawTransactionError['code']);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->requestExceptionWithResponse()]))
             ->getRawTransaction(
                 '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b'
@@ -343,7 +343,7 @@ class ClientTest extends TestCase
             }),
         ]);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->requestExceptionWithResponse()]))
             ->requestAsync(
                 'getrawtransaction',
@@ -354,7 +354,7 @@ class ClientTest extends TestCase
                 }
             );
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
     }
 
     /**
@@ -368,7 +368,7 @@ class ClientTest extends TestCase
         $this->expectExceptionMessage('test');
         $this->expectExceptionCode(0);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->requestExceptionWithoutResponse()]))
             ->getRawTransaction(
                 '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b'
@@ -389,7 +389,7 @@ class ClientTest extends TestCase
             }),
         ]);
 
-        $this->bitcoind
+        $this->devaultd
             ->setClient($this->mockGuzzle([$this->requestExceptionWithoutResponse()]))
             ->requestAsync(
                 'getrawtransaction',
@@ -400,7 +400,7 @@ class ClientTest extends TestCase
                 }
             );
 
-        $this->bitcoind->wait();
+        $this->devaultd->wait();
     }
 
     /**
@@ -427,7 +427,7 @@ class ClientTest extends TestCase
     }
 }
 
-class FakeClient extends BitcoinClient
+class FakeClient extends DeVaultClient
 {
     /**
      * Gets response handler class name.
@@ -436,7 +436,7 @@ class FakeClient extends BitcoinClient
      */
     protected function getResponseHandler() : string
     {
-        return 'Denpa\\Bitcoin\\Tests\\FakeResponse';
+        return 'Protean\\DeVault\\Tests\\FakeResponse';
     }
 }
 

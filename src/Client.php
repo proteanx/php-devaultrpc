@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin;
+namespace Protean\DeVault;
 
-use Denpa\Bitcoin\Exceptions\BadRemoteCallException;
-use Denpa\Bitcoin\Traits\HandlesAsync;
+use Protean\DeVault\Exceptions\BadRemoteCallException;
+use Protean\DeVault\Traits\HandlesAsync;
 use GuzzleHttp\Client as GuzzleHttp;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
@@ -28,7 +28,7 @@ class Client
     /**
      * Client configuration.
      *
-     * @var \Denpa\Bitcoin\Config
+     * @var \Protean\DeVault\Config
      */
     protected $config;
 
@@ -92,7 +92,7 @@ class Client
     /**
      * Gets client config.
      *
-     * @return \Denpa\Bitcoin\Config
+     * @return \Protean\DeVault\Config
      */
     public function getConfig() : Config
     {
@@ -138,7 +138,7 @@ class Client
     }
 
     /**
-     * Makes request to Bitcoin Core.
+     * Makes request to DeVault Core.
      *
      * @param string $method
      * @param mixed  $params
@@ -163,7 +163,7 @@ class Client
     }
 
     /**
-     * Makes async request to Bitcoin Core.
+     * Makes async request to DeVault Core.
      *
      * @param string        $method
      * @param mixed         $params
@@ -211,7 +211,7 @@ class Client
     }
 
     /**
-     * Makes request to Bitcoin Core.
+     * Makes request to DeVault Core.
      *
      * @param string $method
      * @param array  $params
@@ -234,7 +234,7 @@ class Client
      */
     protected function getConfigProvider() : string
     {
-        return 'Denpa\\Bitcoin\\Config';
+        return 'Protean\\DeVault\\Config';
     }
 
     /**
@@ -244,7 +244,7 @@ class Client
      */
     protected function getResponseHandler() : string
     {
-        return 'Denpa\\Bitcoin\\Responses\\BitcoindResponse';
+        return 'Protean\\DeVault\\Responses\\DeVaultdResponse';
     }
 
     /**
@@ -262,7 +262,7 @@ class Client
 
                 return new $handler($response);
             }),
-            'bitcoind_response'
+            'devaultd_response'
         );
 
         return $stack;

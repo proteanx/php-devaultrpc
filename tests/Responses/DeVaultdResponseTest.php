@@ -1,14 +1,14 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests\Responses;
+namespace Protean\DeVault\Tests\Responses;
 
-use Denpa\Bitcoin\Responses\BitcoindResponse;
-use Denpa\Bitcoin\Tests\TestCase;
+use Protean\DeVault\Responses\DeVaultdResponse;
+use Protean\DeVault\Tests\TestCase;
 use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
-class BitcoindResponseTest extends TestCase
+class DeVaultdResponseTest extends TestCase
 {
     /**
      * Set up test.
@@ -20,7 +20,7 @@ class BitcoindResponseTest extends TestCase
         parent::setUp();
 
         $this->guzzleResponse = $this->getBlockResponse();
-        $this->response = new BitcoindResponse($this->guzzleResponse);
+        $this->response = new DeVaultdResponse($this->guzzleResponse);
         $this->response = $this->response->withHeader('X-Test', 'test');
     }
 
@@ -65,7 +65,7 @@ class BitcoindResponseTest extends TestCase
      */
     public function testNoResult() : void
     {
-        $response = new BitcoindResponse($this->rawTransactionError());
+        $response = new DeVaultdResponse($this->rawTransactionError());
         $this->assertFalse($response->hasResult());
     }
 
@@ -121,7 +121,7 @@ class BitcoindResponseTest extends TestCase
      */
     public function testError() : void
     {
-        $response = new BitcoindResponse($this->rawTransactionError());
+        $response = new DeVaultdResponse($this->rawTransactionError());
 
         $this->assertTrue($response->hasError());
 
@@ -559,8 +559,8 @@ class BitcoindResponseTest extends TestCase
 
         $serialized = sprintf(
             'C:%u:"%s":%u:{%s}',
-            strlen(BitcoindResponse::class),
-            BitcoindResponse::class,
+            strlen(DeVaultdResponse::class),
+            DeVaultdResponse::class,
             strlen($serializedContainer),
             $serializedContainer
         );

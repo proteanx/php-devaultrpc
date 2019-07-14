@@ -1,10 +1,10 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests\Exceptions;
+namespace Protean\DeVault\Tests\Exceptions;
 
-use Denpa\Bitcoin\Exceptions\BadRemoteCallException;
-use Denpa\Bitcoin\Responses\Response;
-use Denpa\Bitcoin\Tests\TestCase;
+use Protean\DeVault\Exceptions\BadRemoteCallException;
+use Protean\DeVault\Responses\Response;
+use Protean\DeVault\Tests\TestCase;
 
 class BadRemoteCallExceptionTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests;
+namespace Protean\DeVault\Tests;
 
-use Denpa\Bitcoin;
-use Denpa\Bitcoin\Exceptions\BadConfigurationException;
-use Denpa\Bitcoin\Exceptions\Handler as ExceptionHandler;
+use Protean\DeVault;
+use Protean\DeVault\Exceptions\BadConfigurationException;
+use Protean\DeVault\Exceptions\Handler as ExceptionHandler;
 
 class FunctionsTest extends TestCase
 {
@@ -12,60 +12,60 @@ class FunctionsTest extends TestCase
      * Test satoshi to btc converter.
      *
      * @param int    $satoshi
-     * @param string $bitcoin
+     * @param string $devault
      *
      * @return void
      *
      * @dataProvider satoshiBtcProvider
      */
-    public function testToBtc(int $satoshi, string $bitcoin) : void
+    public function testToBtc(int $satoshi, string $devault) : void
     {
-        $this->assertEquals($bitcoin, Bitcoin\to_bitcoin($satoshi));
+        $this->assertEquals($devault, DeVault\to_devault($satoshi));
     }
 
     /**
-     * Test bitcoin to satoshi converter.
+     * Test devault to satoshi converter.
      *
      * @param int    $satoshi
-     * @param string $bitcoin
+     * @param string $devault
      *
      * @return void
      *
      * @dataProvider satoshiBtcProvider
      */
-    public function testToSatoshi(int $satoshi, string $bitcoin) : void
+    public function testToSatoshi(int $satoshi, string $devault) : void
     {
-        $this->assertEquals($satoshi, Bitcoin\to_satoshi($bitcoin));
+        $this->assertEquals($satoshi, DeVault\to_satoshi($devault));
     }
 
     /**
-     * Test bitcoin to ubtc/bits converter.
+     * Test devault to ubtc/bits converter.
      *
      * @param int    $ubtc
-     * @param string $bitcoin
+     * @param string $devault
      *
      * @return void
      *
      * @dataProvider bitsBtcProvider
      */
-    public function testToBits(int $ubtc, string $bitcoin) : void
+    public function testToBits(int $ubtc, string $devault) : void
     {
-        $this->assertEquals($ubtc, Bitcoin\to_ubtc($bitcoin));
+        $this->assertEquals($ubtc, DeVault\to_ubtc($devault));
     }
 
     /**
-     * Test bitcoin to mbtc converter.
+     * Test devault to mbtc converter.
      *
      * @param float  $mbtc
-     * @param string $bitcoin
+     * @param string $devault
      *
      * @return void
      *
      * @dataProvider mbtcBtcProvider
      */
-    public function testToMbtc(float $mbtc, string $bitcoin) : void
+    public function testToMbtc(float $mbtc, string $devault) : void
     {
-        $this->assertEquals($mbtc, Bitcoin\to_mbtc($bitcoin));
+        $this->assertEquals($mbtc, DeVault\to_mbtc($devault));
     }
 
     /**
@@ -84,7 +84,7 @@ class FunctionsTest extends TestCase
         int $precision,
         string $expected
     ) : void {
-        $this->assertSame($expected, Bitcoin\to_fixed($float, $precision));
+        $this->assertSame($expected, DeVault\to_fixed($float, $precision));
     }
 
     /**
@@ -109,7 +109,7 @@ class FunctionsTest extends TestCase
         ?string $user,
         ?string $pass
     ) : void {
-        $parts = Bitcoin\split_url($url);
+        $parts = DeVault\split_url($url);
 
         $this->assertEquals($parts['scheme'], $scheme);
         $this->assertEquals($parts['host'], $host);
@@ -130,7 +130,7 @@ class FunctionsTest extends TestCase
         $this->expectException(BadConfigurationException::class);
         $this->expectExceptionMessage('Invalid url');
 
-        Bitcoin\split_url('cookies!');
+        DeVault\split_url('cookies!');
     }
 
     /**
@@ -140,7 +140,7 @@ class FunctionsTest extends TestCase
      */
     public function testExceptionHandlerHelper() : void
     {
-        $this->assertInstanceOf(ExceptionHandler::class, Bitcoin\exception());
+        $this->assertInstanceOf(ExceptionHandler::class, DeVault\exception());
     }
 
     /**
@@ -161,7 +161,7 @@ class FunctionsTest extends TestCase
     }
 
     /**
-     * Provides satoshi and bitcoin values.
+     * Provides satoshi and devault values.
      *
      * @return array
      */

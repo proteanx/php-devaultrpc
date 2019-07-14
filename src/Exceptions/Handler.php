@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin\Exceptions;
+namespace Protean\DeVault\Exceptions;
 
-use Denpa\Bitcoin\Traits\Singleton;
+use Protean\DeVault\Traits\Singleton;
 use GuzzleHttp\Exception\RequestException;
 use Throwable;
 

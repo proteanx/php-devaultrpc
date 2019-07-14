@@ -1,24 +1,24 @@
-# Simple Bitcoin JSON-RPC client based on GuzzleHttp
+# Simple DeVault JSON-RPC client based on GuzzleHttp
 
-[![Latest Stable Version](https://poser.pugx.org/denpa/php-bitcoinrpc/v/stable)](https://packagist.org/packages/denpa/php-bitcoinrpc)
-[![License](https://poser.pugx.org/denpa/php-bitcoinrpc/license)](https://packagist.org/packages/denpa/php-bitcoinrpc)
-[![Build Status](https://travis-ci.org/denpamusic/php-bitcoinrpc.svg)](https://travis-ci.org/denpamusic/php-bitcoinrpc)
-[![Code Climate](https://codeclimate.com/github/denpamusic/php-bitcoinrpc/badges/gpa.svg)](https://codeclimate.com/github/denpamusic/php-bitcoinrpc)
-[![Code Coverage](https://codeclimate.com/github/denpamusic/php-bitcoinrpc/badges/coverage.svg)](https://codeclimate.com/github/denpamusic/php-bitcoinrpc/coverage)
-[![Join the chat at https://gitter.im/php-bitcoinrpc/Lobby](https://badges.gitter.im/php-bitcoinrpc/Lobby.svg)](https://gitter.im/php-bitcoinrpc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Latest Stable Version](https://poser.pugx.org/protean/php-devaultrpc/v/stable)](https://packagist.org/packages/protean/php-devaultrpc)
+[![License](https://poser.pugx.org/protean/php-devaultrpc/license)](https://packagist.org/packages/protean/php-devaultrpc)
+[![Build Status](https://travis-ci.org/proteanmusic/php-devaultrpc.svg)](https://travis-ci.org/proteanmusic/php-devaultrpc)
+[![Code Climate](https://codeclimate.com/github/proteanmusic/php-devaultrpc/badges/gpa.svg)](https://codeclimate.com/github/proteanmusic/php-devaultrpc)
+[![Code Coverage](https://codeclimate.com/github/proteanmusic/php-devaultrpc/badges/coverage.svg)](https://codeclimate.com/github/proteanmusic/php-devaultrpc/coverage)
+[![Join the chat at https://gitter.im/php-devaultrpc/Lobby](https://badges.gitter.im/php-devaultrpc/Lobby.svg)](https://gitter.im/php-devaultrpc/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Installation
-Run ```php composer.phar require denpa/php-bitcoinrpc``` in your project directory or add following lines to composer.json
+Run ```php composer.phar require protean/php-devaultrpc``` in your project directory or add following lines to composer.json
 ```javascript
 "require": {
-    "denpa/php-bitcoinrpc": "^2.1"
+    "protean/php-devaultrpc": "^2.1"
 }
 ```
 and run ```php composer.phar install```.
 
 ## Requirements
 PHP 7.1 or higher  
-_For PHP 5.6 and 7.0 use [php-bitcoinrpc v2.0.x](https://github.com/denpamusic/php-bitcoinrpc/tree/2.0.x)._
+_For PHP 5.6 and 7.0 use [php-devaultrpc v2.0.x](https://github.com/proteanmusic/php-devaultrpc/tree/2.0.x)._
 
 ## Usage
 Create new object with url as parameter
@@ -29,11 +29,11 @@ Create new object with url as parameter
  **/
 // require 'vendor/autoload.php';
 
-use Denpa\Bitcoin\Client as BitcoinClient;
+use Protean\DeVault\Client as DeVaultClient;
 
-$bitcoind = new BitcoinClient('http://rpcuser:rpcpassword@localhost:8332/');
+$devaultd = new DeVaultClient('http://rpcuser:rpcpassword@localhost:3339/');
 ```
-or use array to define your bitcoind settings
+or use array to define your devaultd settings
 ```php
 /**
  * Don't forget to include composer autoloader by uncommenting line below
@@ -41,24 +41,24 @@ or use array to define your bitcoind settings
  **/
 // require 'vendor/autoload.php';
 
-use Denpa\Bitcoin\Client as BitcoinClient;
+use Protean\DeVault\Client as DeVaultClient;
 
-$bitcoind = new BitcoinClient([
+$devaultd = new DeVaultClient([
     'scheme'        => 'http',                 // optional, default http
     'host'          => 'localhost',            // optional, default localhost
-    'port'          => 8332,                   // optional, default 8332
+    'port'          => 3339,                   // optional, default 3339
     'user'          => 'rpcuser',              // required
     'password'      => 'rpcpassword',          // required
     'ca'            => '/etc/ssl/ca-cert.pem'  // optional, for use with https scheme
     'preserve_case' => false,                  // optional, send method names as defined instead of lowercasing them
 ]);
 ```
-Then call methods defined in [Bitcoin Core API Documentation](https://bitcoin.org/en/developer-reference#bitcoin-core-apis) with magic:
+Then call methods defined in [DeVault Core API Documentation](https://devault.org/en/developer-reference#devault-core-apis) with magic:
 ```php
 /**
  * Get block info.
  */
-$block = $bitcoind->getBlock('000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
+$block = $devaultd->getBlock('000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
 
 $block('hash')->get();     // 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
 $block['height'];          // 0 (array access)
@@ -77,19 +77,19 @@ $block('tx')->last();      // txid of last transaction
 /**
  * Send transaction.
  */
-$result = $bitcoind->sendToAddress('mmXgiR6KAhZCyQ8ndr2BCfEq1wNG2UnyG6', 0.1);
+$result = $devaultd->sendToAddress('mmXgiR6KAhZCyQ8ndr2BCfEq1wNG2UnyG6', 0.1);
 $txid = $result->get();
 
 /**
  * Get transaction amount.
  */
-$result = $bitcoind->listSinceBlock();
-$bitcoin = $result->sum('transactions.*.amount');
-$satoshi = \Denpa\Bitcoin\to_satoshi($bitcoin);
+$result = $devaultd->listSinceBlock();
+$devault = $result->sum('transactions.*.amount');
+$satoshi = \Protean\DeVault\to_satoshi($devault);
 ```
 To send asynchronous request, add Async to method name:
 ```php
-$bitcoind->getBlockAsync(
+$devaultd->getBlockAsync(
     '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f',
     function ($response) {
         // success
@@ -105,7 +105,7 @@ You can also send requests using request method:
 /**
  * Get block info.
  */
-$block = $bitcoind->request('getBlock', '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
+$block = $devaultd->request('getBlock', '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
 
 $block('hash');            // 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
 $block['height'];          // 0 (array access)
@@ -123,13 +123,13 @@ $block->random(1, 'tx');   // get random txid
 /**
  * Send transaction.
  */
-$result = $bitcoind->request('sendtoaddress', 'mmXgiR6KAhZCyQ8ndr2BCfEq1wNG2UnyG6', 0.06);
+$result = $devaultd->request('sendtoaddress', 'mmXgiR6KAhZCyQ8ndr2BCfEq1wNG2UnyG6', 0.06);
 $txid = $result->get();
 
 ```
 or requestAsync method for asynchronous calls:
 ```php
-$bitcoind->requestAsync(
+$devaultd->requestAsync(
     'getBlock',
     '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f',
     function ($response) {
@@ -142,48 +142,48 @@ $bitcoind->requestAsync(
 ```
 
 ## Multi-Wallet RPC
-You can use `wallet($name)` function to do a [Multi-Wallet RPC call](https://en.bitcoin.it/wiki/API_reference_(JSON-RPC)#Multi-wallet_RPC_calls):
+You can use `wallet($name)` function to do a [Multi-Wallet RPC call](https://en.devault.it/wiki/API_reference_(JSON-RPC)#Multi-wallet_RPC_calls):
 ```php
 /**
  * Get wallet2.dat balance.
  */
-$balance = $bitcoind->wallet('wallet2.dat')->getbalance();
+$balance = $devaultd->wallet('wallet2.dat')->getbalance();
 
 echo $balance->get(); // 0.10000000
 ```
 
 ## Exceptions
-* `Denpa\Bitcoin\Exceptions\BadConfigurationException` - thrown on bad client configuration.
-* `Denpa\Bitcoin\Exceptions\BadRemoteCallException` - thrown on getting error message from daemon.
-* `Denpa\Bitcoin\Exceptions\ConnectionException` - thrown on daemon connection errors (e. g. timeouts)
+* `Protean\DeVault\Exceptions\BadConfigurationException` - thrown on bad client configuration.
+* `Protean\DeVault\Exceptions\BadRemoteCallException` - thrown on getting error message from daemon.
+* `Protean\DeVault\Exceptions\ConnectionException` - thrown on daemon connection errors (e. g. timeouts)
 
 
 ## Helpers
 Package provides following helpers to assist with value handling.
-#### `to_bitcoin()`
-Converts value in satoshi to bitcoin.
+#### `to_devault()`
+Converts value in satoshi to devault.
 ```php
-echo Denpa\Bitcoin\to_bitcoin(100000); // 0.00100000
+echo Protean\DeVault\to_devault(100000); // 0.00100000
 ```
 #### `to_satoshi()`
-Converts value in bitcoin to satoshi.
+Converts value in devault to satoshi.
 ```php
-echo Denpa\Bitcoin\to_satoshi(0.001); // 100000
+echo Protean\DeVault\to_satoshi(0.001); // 100000
 ```
 #### `to_ubtc()`
-Converts value in bitcoin to ubtc/bits.
+Converts value in devault to ubtc/bits.
 ```php
-echo Denpa\Bitcoin\to_ubtc(0.001); // 1000.0000
+echo Protean\DeVault\to_ubtc(0.001); // 1000.0000
 ```
 #### `to_mbtc()`
-Converts value in bitcoin to mbtc.
+Converts value in devault to mbtc.
 ```php
-echo Denpa\Bitcoin\to_mbtc(0.001); // 1.0000
+echo Protean\DeVault\to_mbtc(0.001); // 1.0000
 ```
 #### `to_fixed()`
 Trims float value to precision without rounding.
 ```php
-echo Denpa\Bitcoin\to_fixed(0.1236, 3); // 0.123
+echo Protean\DeVault\to_fixed(0.1236, 3); // 0.123
 ```
 
 ## License

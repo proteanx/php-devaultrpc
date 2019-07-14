@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin;
+namespace Protean\DeVault;
 
-use Denpa\Bitcoin\Exceptions\BadConfigurationException;
-use Denpa\Bitcoin\Exceptions\Handler as ExceptionHandler;
+use Protean\DeVault\Exceptions\BadConfigurationException;
+use Protean\DeVault\Exceptions\Handler as ExceptionHandler;
 
-if (!function_exists('to_bitcoin')) {
+if (!function_exists('to_devault')) {
     /**
-     * Converts from satoshi to bitcoin.
+     * Converts from satoshi to devault.
      *
      * @param int $satoshi
      *
      * @return string
      */
-    function to_bitcoin(int $satoshi) : string
+    function to_devault(int $satoshi) : string
     {
         return bcdiv((string) $satoshi, (string) 1e8, 8);
     }
@@ -23,43 +23,43 @@ if (!function_exists('to_bitcoin')) {
 
 if (!function_exists('to_satoshi')) {
     /**
-     * Converts from bitcoin to satoshi.
+     * Converts from devault to satoshi.
      *
-     * @param string|float $bitcoin
+     * @param string|float $devault
      *
      * @return string
      */
-    function to_satoshi($bitcoin) : string
+    function to_satoshi($devault) : string
     {
-        return bcmul(to_fixed((float) $bitcoin, 8), (string) 1e8);
+        return bcmul(to_fixed((float) $devault, 8), (string) 1e8);
     }
 }
 
 if (!function_exists('to_ubtc')) {
     /**
-     * Converts from bitcoin to ubtc/bits.
+     * Converts from devault to ubtc/bits.
      *
-     * @param string|float $bitcoin
+     * @param string|float $devault
      *
      * @return string
      */
-    function to_ubtc($bitcoin) : string
+    function to_ubtc($devault) : string
     {
-        return bcmul(to_fixed((float) $bitcoin, 8), (string) 1e6, 4);
+        return bcmul(to_fixed((float) $devault, 8), (string) 1e6, 4);
     }
 }
 
 if (!function_exists('to_mbtc')) {
     /**
-     * Converts from bitcoin to mbtc.
+     * Converts from devault to mbtc.
      *
-     * @param string|float $bitcoin
+     * @param string|float $devault
      *
      * @return string
      */
-    function to_mbtc($bitcoin) : string
+    function to_mbtc($devault) : string
     {
-        return bcmul(to_fixed((float) $bitcoin, 8), (string) 1e3, 4);
+        return bcmul(to_fixed((float) $devault, 8), (string) 1e3, 4);
     }
 }
 
@@ -110,7 +110,7 @@ if (!function_exists('exception')) {
     /**
      * Gets exception handler instance.
      *
-     * @return \Denpa\Bitcoin\Exceptions\Handler
+     * @return \Protean\DeVault\Exceptions\Handler
      */
     function exception() : ExceptionHandler
     {

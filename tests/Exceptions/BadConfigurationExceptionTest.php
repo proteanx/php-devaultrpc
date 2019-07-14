@@ -1,9 +1,9 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests\Exceptions;
+namespace Protean\DeVault\Tests\Exceptions;
 
-use Denpa\Bitcoin\Exceptions\BadConfigurationException;
-use Denpa\Bitcoin\Tests\TestCase;
+use Protean\DeVault\Exceptions\BadConfigurationException;
+use Protean\DeVault\Tests\TestCase;
 
 class BadConfigurationExceptionTest extends TestCase
 {

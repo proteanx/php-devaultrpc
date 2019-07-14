@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin\Responses;
+namespace Protean\DeVault\Responses;
 
-use Denpa\Bitcoin\Traits\Collection;
-use Denpa\Bitcoin\Traits\ImmutableArray;
-use Denpa\Bitcoin\Traits\SerializableContainer;
+use Protean\DeVault\Traits\Collection;
+use Protean\DeVault\Traits\ImmutableArray;
+use Protean\DeVault\Traits\SerializableContainer;
 
-class BitcoindResponse extends Response implements
+class DeVaultdResponse extends Response implements
     \ArrayAccess,
     \Countable,
     \Serializable,

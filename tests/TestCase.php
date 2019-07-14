@@ -1,8 +1,8 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests;
+namespace Protean\DeVault\Tests;
 
-use Denpa\Bitcoin\Responses\BitcoindResponse;
+use Protean\DeVault\Responses\DeVaultdResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
@@ -126,7 +126,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         array $queue = [],
         HandlerStack $handler = null
     ) : GuzzleClient {
-        $handler = $handler ?: $this->bitcoind->getClient()->getConfig('handler');
+        $handler = $handler ?: $this->devaultd->getClient()->getConfig('handler');
 
         if ($handler) {
             $middleware = Middleware::history($this->history);
@@ -204,7 +204,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             return new RequestException(
                 'test',
                 $request,
-                new BitcoindResponse($this->rawTransactionError())
+                new DeVaultdResponse($this->rawTransactionError())
             );
         };
 

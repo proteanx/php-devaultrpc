@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin\Responses;
+namespace Protean\DeVault\Responses;
 
-use Denpa\Bitcoin\Traits\Message;
+use Protean\DeVault\Traits\Message;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class Response implements ResponseInterface

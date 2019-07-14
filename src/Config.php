@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Denpa\Bitcoin;
+namespace Protean\DeVault;
 
-use Denpa\Bitcoin\Traits\Collection;
-use Denpa\Bitcoin\Traits\ImmutableArray;
+use Protean\DeVault\Traits\Collection;
+use Protean\DeVault\Traits\ImmutableArray;
 
 class Config implements \ArrayAccess, \Countable
 {
@@ -19,7 +19,7 @@ class Config implements \ArrayAccess, \Countable
     protected $config = [
         'scheme'        => 'http',
         'host'          => '127.0.0.1',
-        'port'          => 8332,
+        'port'          => 3339,
         'user'          => null,
         'password'      => null,
         'ca'            => null,
@@ -88,7 +88,7 @@ class Config implements \ArrayAccess, \Countable
      */
     public function set(array $config = []) : self
     {
-        // use same var name as laravel-bitcoinrpc
+        // use same var name as laravel-devaultrpc
         $config['password'] = $config['password'] ?? $config['pass'] ?? null;
 
         if (is_null($config['password'])) {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Denpa\Bitcoin\Tests\Exceptions;
+namespace Protean\DeVault\Tests\Exceptions;
 
-use Denpa\Bitcoin\Exceptions\ClientException;
-use Denpa\Bitcoin\Tests\TestCase;
+use Protean\DeVault\Exceptions\ClientException;
+use Protean\DeVault\Tests\TestCase;
 
 class ClientExceptionTest extends TestCase
 {
@@ -66,7 +66,7 @@ class FakeClientException extends ClientException
 
 namespace Test\Exceptions;
 
-class FakeClientException extends \Denpa\Bitcoin\Tests\Exceptions\FakeClientException
+class FakeClientException extends \Protean\DeVault\Tests\Exceptions\FakeClientException
 {
     // same as above in different namespace
 }
