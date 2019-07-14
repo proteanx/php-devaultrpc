@@ -1,7 +1,7 @@
 # Simple DeVault JSON-RPC client based on GuzzleHttp
 
 ## Installation
-Run ```php composer.phar require protean/php-devaultrpc``` in your project directory or add following lines to composer.json
+Run ```php composer.phar require proteanx/php-devaultrpc``` in your project directory or add following lines to composer.json
 ```javascript
 "require": {
     "proteanx/php-devaultrpc": "^2.1"
@@ -11,7 +11,6 @@ and run ```php composer.phar install```.
 
 ## Requirements
 PHP 7.1 or higher  
-_For PHP 5.6 and 7.0 use [php-devaultrpc v2.0.x](https://github.com/proteanmusic/php-devaultrpc/tree/2.0.x)._
 
 ## Usage
 Create new object with url as parameter
@@ -173,10 +172,3 @@ echo Proteanx\DeVault\to_fixed(0.1236, 3); // 0.123
 
 This product is distributed under MIT license.
 
-## Donations
-
-If you like this project, please consider donating:<br>
-**BTC**: 3L6dqSBNgdpZan78KJtzoXEk9DN3sgEQJu<br>
-**Bech32**: bc1qyj8v6l70c4mjgq7hujywlg6le09kx09nq8d350
-
-❤Thanks for your support!❤
